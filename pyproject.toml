@@ -6,7 +6,9 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "django>=6.0.5",
+    "django-cors-headers>=4.9.0",
     "djangorestframework>=3.17.1",
+    "djangorestframework-simplejwt>=5.5.1",
     "psycopg[binary]>=3.3.4",
     "redis>=7.4.0",
 ]

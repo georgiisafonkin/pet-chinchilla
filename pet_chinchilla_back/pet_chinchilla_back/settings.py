@@ -42,11 +42,12 @@ INSTALLED_APPS = [
     # Third Party
     'rest_framework',
     'rest_framework_simplejwt',
+    'channels',
     # Local apps
     'apps.auth_app',
     'apps.breeders_app',
     'apps.chinchillas_app',
-
+    'apps.chat_app',
 ]
 
 MIDDLEWARE = [
@@ -145,4 +146,13 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': True,
     'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(os.environ.get('REDIS_HOST', 'redis'), 6379)],
+        },
+    },
 }

@@ -1,0 +1,65 @@
+<div class="container">
+    <h2>{{ isEditMode ? 'Edit Chinchilla' : 'Add Chinchilla' }}</h2>
+  
+    <div class="error" *ngIf="error">{{ error }}</div>
+    <div class="loading" *ngIf="loading">Loading...</div>
+  
+    <form (ngSubmit)="onSubmit()" *ngIf="!loading">
+      <div class="field">
+        <label>Name *</label>
+        <input
+          type="text"
+          [(ngModel)]="name"
+          name="name"
+          placeholder="Enter name"
+        />
+      </div>
+  
+      <div class="field">
+        <label>Age (months)</label>
+        <input
+          type="number"
+          [(ngModel)]="age"
+          name="age"
+          placeholder="Enter age"
+        />
+      </div>
+  
+      <div class="field">
+        <label>Breed</label>
+        <input
+          type="text"
+          [(ngModel)]="breed"
+          name="breed"
+          placeholder="Enter breed"
+        />
+      </div>
+  
+      <div class="field">
+        <label>Fur type</label>
+        <input
+          type="text"
+          [(ngModel)]="fur_type"
+          name="fur_type"
+          placeholder="Enter fur type"
+        />
+      </div>
+  
+      <div class="field">
+        <label>Color</label>
+        <input
+          type="text"
+          [(ngModel)]="color"
+          name="color"
+          placeholder="Enter color"
+        />
+      </div>
+  
+      <div class="actions">
+        <button type="submit" [disabled]="loading">
+          {{ isEditMode ? 'Save changes' : 'Add chinchilla' }}
+        </button>
+        <a routerLink="/chinchillas">Cancel</a>
+      </div>
+    </form>
+  </div>

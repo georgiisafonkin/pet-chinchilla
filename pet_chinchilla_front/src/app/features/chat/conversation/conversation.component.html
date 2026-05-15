@@ -1,0 +1,49 @@
+<div class="chat-container">
+    <div class="breeders-list">
+      <h3>Breeders</h3>
+      <div class="error" *ngIf="error">{{ error }}</div>
+      <div
+        class="breeder-item"
+        *ngFor="let breeder of breeders"
+        [class.active]="selectedBreeder?.id === breeder.id"
+        (click)="selectBreeder(breeder)"
+      >
+        {{ breeder.username }}
+      </div>
+    </div>
+  
+    <div class="conversation">
+      <div *ngIf="!selectedBreeder" class="placeholder">
+        <p>Select a breeder to start chatting</p>
+      </div>
+  
+      <ng-container *ngIf="selectedBreeder">
+        <div class="conversation-header">
+          <h3>{{ selectedBreeder.username }}</h3>
+        </div>
+  
+        <div class="message-list" #messageList>
+          <div class="loading" *ngIf="loading">Loading...</div>
+          <div
+            class="message"
+            *ngFor="let message of messages"
+            [class.own]="message.sender_username !== selectedBreeder.username"
+          >
+            <span class="sender">{{ message.sender_username }}</span>
+            <p>{{ message.text }}</p>
+            <span class="time">{{ message.created_at | date:'HH:mm' }}</span>
+          </div>
+        </div>
+  
+        <div class="message-input">
+          <input
+            type="text"
+            [(ngModel)]="text"
+            placeholder="Type a message..."
+            (keyup.enter)="sendMessage()"
+          />
+          <button (click)="sendMessage()">Send</button>
+        </div>
+      </ng-container>
+    </div>
+  </div>

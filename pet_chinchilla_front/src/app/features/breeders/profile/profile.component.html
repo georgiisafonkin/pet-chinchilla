@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>My Profile</h2>
+  
+    <div class="error" *ngIf="error">{{ error }}</div>
+    <div class="success" *ngIf="success">{{ success }}</div>
+    <div class="loading" *ngIf="loading">Loading...</div>
+  
+    <div *ngIf="!loading && breeder">
+      <p><strong>Username:</strong> {{ breeder.username }}</p>
+      <p><strong>Email:</strong> {{ breeder.email }}</p>
+  
+      <form (ngSubmit)="onSubmit()">
+        <div class="field">
+          <label>About me</label>
+          <textarea
+            [(ngModel)]="bio"
+            name="bio"
+            placeholder="Tell about yourself"
+            rows="4"
+          ></textarea>
+        </div>
+  
+        <button type="submit" [disabled]="saving">
+          {{ saving ? 'Saving...' : 'Save changes' }}
+        </button>
+      </form>
+    </div>
+  </div>

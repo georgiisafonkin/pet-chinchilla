@@ -1,0 +1,14 @@
+<nav>
+    <a routerLink="/chinchillas" routerLinkActive="active">Chinchillas</a>
+    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a routerLink="/chat" routerLinkActive="active">Chat</a>
+  
+    <ng-container *ngIf="isAuthenticated$ | async; else guestLinks">
+      <button (click)="logout()">Logout</button>
+    </ng-container>
+  
+    <ng-template #guestLinks>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+      <a routerLink="/register" routerLinkActive="active">Register</a>
+    </ng-template>
+  </nav>

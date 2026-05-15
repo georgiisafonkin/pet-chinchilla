@@ -1,0 +1,52 @@
+<div class="container">
+    <h2>Register</h2>
+  
+    <div class="error" *ngIf="error">{{ error }}</div>
+  
+    <form (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label>Username *</label>
+        <input
+          type="text"
+          [(ngModel)]="username"
+          name="username"
+          placeholder="Enter username"
+        />
+      </div>
+  
+      <div class="field">
+        <label>Password *</label>
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Enter password"
+        />
+      </div>
+  
+      <div class="field">
+        <label>Confirm password *</label>
+        <input
+          type="password"
+          [(ngModel)]="password2"
+          name="password2"
+          placeholder="Confirm password"
+        />
+      </div>
+  
+      <div class="field">
+        <label>About me</label>
+        <textarea
+          [(ngModel)]="bio"
+          name="bio"
+          placeholder="Tell about yourself"
+        ></textarea>
+      </div>
+  
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Registering...' : 'Register' }}
+      </button>
+    </form>
+  
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
+  </div>

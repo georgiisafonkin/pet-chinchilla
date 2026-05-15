@@ -1,52 +1,72 @@
-<div class="container">
-    <h2>Register</h2>
+<div class="auth-page">
+    <div class="form-container">
+      <h1 class="form-title">Create account</h1>
+      <p class="form-subtitle">Join the chinchilla breeders community</p>
   
-    <div class="error" *ngIf="error">{{ error }}</div>
+      <div class="alert-error" *ngIf="error">{{ error }}</div>
   
-    <form (ngSubmit)="onSubmit()">
-      <div class="field">
-        <label>Username *</label>
-        <input
-          type="text"
-          [(ngModel)]="username"
-          name="username"
-          placeholder="Enter username"
-        />
-      </div>
+      <form (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username *</mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          <input matInput [(ngModel)]="username" name="username" placeholder="Enter username"/>
+        </mat-form-field>
   
-      <div class="field">
-        <label>Password *</label>
-        <input
-          type="password"
-          [(ngModel)]="password"
-          name="password"
-          placeholder="Enter password"
-        />
-      </div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password *</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input
+            matInput
+            [(ngModel)]="password"
+            name="password"
+            [type]="hidePassword ? 'password' : 'text'"
+            placeholder="Enter password"
+          />
+          <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
   
-      <div class="field">
-        <label>Confirm password *</label>
-        <input
-          type="password"
-          [(ngModel)]="password2"
-          name="password2"
-          placeholder="Confirm password"
-        />
-      </div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Confirm password *</mat-label>
+          <mat-icon matPrefix>lock_outline</mat-icon>
+          <input
+            matInput
+            [(ngModel)]="password2"
+            name="password2"
+            [type]="hidePassword2 ? 'password' : 'text'"
+            placeholder="Confirm password"
+          />
+          <button mat-icon-button matSuffix type="button" (click)="hidePassword2 = !hidePassword2">
+            <mat-icon>{{ hidePassword2 ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
   
-      <div class="field">
-        <label>About me</label>
-        <textarea
-          [(ngModel)]="bio"
-          name="bio"
-          placeholder="Tell about yourself"
-        ></textarea>
-      </div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>About me</mat-label>
+          <mat-icon matPrefix>info</mat-icon>
+          <textarea
+            matInput
+            [(ngModel)]="bio"
+            name="bio"
+            placeholder="Tell about yourself"
+            rows="3"
+          ></textarea>
+        </mat-form-field>
   
-      <button type="submit" [disabled]="loading">
-        {{ loading ? 'Registering...' : 'Register' }}
-      </button>
-    </form>
+        <button
+          mat-raised-button
+          class="btn-gradient submit-btn"
+          type="submit"
+          [disabled]="loading"
+        >
+          <mat-spinner diameter="20" *ngIf="loading"></mat-spinner>
+          <span *ngIf="!loading">Create Account</span>
+        </button>
+      </form>
   
-    <p>Already have an account? <a routerLink="/login">Login</a></p>
+      <p class="form-footer">
+        Already have an account? <a routerLink="/login">Sign in</a>
+      </p>
+    </div>
   </div>

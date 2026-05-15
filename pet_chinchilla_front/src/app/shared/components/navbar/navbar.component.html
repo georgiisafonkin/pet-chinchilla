@@ -1,14 +1,25 @@
-<nav>
-    <a routerLink="/chinchillas" routerLinkActive="active">Chinchillas</a>
-    <a routerLink="/profile" routerLinkActive="active">Profile</a>
-    <a routerLink="/chat" routerLinkActive="active">Chat</a>
+<mat-toolbar>
+    <span class="logo" routerLink="/">Chinchilla Breeders</span>
+  
+    <span class="spacer"></span>
   
     <ng-container *ngIf="isAuthenticated$ | async; else guestLinks">
-      <button (click)="logout()">Logout</button>
+      <a mat-button routerLink="/chinchillas" routerLinkActive="active-link">
+        <mat-icon>pets</mat-icon> My Chinchillas
+      </a>
+      <a mat-button routerLink="/chat" routerLinkActive="active-link">
+        <mat-icon>chat</mat-icon> Chat
+      </a>
+      <a mat-button routerLink="/profile" routerLinkActive="active-link">
+        <mat-icon>person</mat-icon> Profile
+      </a>
+      <button mat-stroked-button (click)="logout()">
+        <mat-icon>logout</mat-icon> Logout
+      </button>
     </ng-container>
   
     <ng-template #guestLinks>
-      <a routerLink="/login" routerLinkActive="active">Login</a>
-      <a routerLink="/register" routerLinkActive="active">Register</a>
+      <a mat-button routerLink="/login" routerLinkActive="active-link">Login</a>
+      <a mat-raised-button class="btn-gradient" routerLink="/register">Register</a>
     </ng-template>
-  </nav>
+  </mat-toolbar>

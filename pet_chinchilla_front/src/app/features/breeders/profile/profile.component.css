@@ -1,0 +1,85 @@
+.loading-container {
+    display: flex;
+    justify-content: center;
+    padding: 4rem;
+  }
+  
+  .profile-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  
+  .profile-card {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .avatar {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .username {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .email {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: grey;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+  
+  mat-divider {
+    margin: 1rem 0;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  .bio-preview {
+    color: grey;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+  }
+  
+  .edit-card {
+    padding: 2rem;
+  }
+  
+  .edit-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #a855f7;
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .submit-btn {
+    height: 48px;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .profile-layout {
+      grid-template-columns: 1fr;
+    }
+  }

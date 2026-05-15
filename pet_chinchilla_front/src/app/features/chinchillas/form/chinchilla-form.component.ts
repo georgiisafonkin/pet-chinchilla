@@ -2,13 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { ChinchillaService, ChinchillaPayload } from '../../../core/services/chinchilla.service';
 
 @Component({
   selector: 'app-chinchilla-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+  ],
   templateUrl: './chinchilla-form.component.html',
+  styleUrl: './chinchilla-form.component.css',
 })
 export class ChinchillaFormComponent implements OnInit {
   id: number | null = null;
@@ -19,6 +37,9 @@ export class ChinchillaFormComponent implements OnInit {
   color = '';
   error = '';
   loading = false;
+  saving = false;
+
+  furTypes = ['Standard', 'Velvet', 'Angora', 'Mosaic'];
 
   get isEditMode(): boolean {
     return this.id !== null;
@@ -62,7 +83,7 @@ export class ChinchillaFormComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
+    this.saving = true;
     this.error = '';
 
     const payload: ChinchillaPayload = {
@@ -81,7 +102,7 @@ export class ChinchillaFormComponent implements OnInit {
       next: () => this.router.navigate(['/chinchillas']),
       error: () => {
         this.error = 'Failed to save chinchilla.';
-        this.loading = false;
+        this.saving = false;
       },
     });
   }

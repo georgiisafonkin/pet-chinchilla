@@ -1,28 +1,53 @@
-<div class="container">
-    <h2>My Profile</h2>
+<div class="page-container">
+    <div class="page-header">
+      <h1 class="page-title">My Profile</h1>
+    </div>
   
-    <div class="error" *ngIf="error">{{ error }}</div>
-    <div class="success" *ngIf="success">{{ success }}</div>
-    <div class="loading" *ngIf="loading">Loading...</div>
+    <div class="loading-container" *ngIf="loading">
+      <mat-spinner diameter="48"></mat-spinner>
+    </div>
   
-    <div *ngIf="!loading && breeder">
-      <p><strong>Username:</strong> {{ breeder.username }}</p>
-      <p><strong>Email:</strong> {{ breeder.email }}</p>
+    <div class="profile-layout" *ngIf="!loading && breeder">
+      <div class="profile-card glass-card">
+        <h2 class="username">{{ breeder.username }}</h2>
+        <p class="email">
+          <mat-icon>email</mat-icon> {{ breeder.email || 'No email set' }}
+        </p>
+        <mat-divider></mat-divider>
+        <p class="bio-preview">{{ breeder.bio || 'No bio yet' }}</p>
+      </div>
   
-      <form (ngSubmit)="onSubmit()">
-        <div class="field">
-          <label>About me</label>
-          <textarea
-            [(ngModel)]="bio"
-            name="bio"
-            placeholder="Tell about yourself"
-            rows="4"
-          ></textarea>
-        </div>
+      <div class="edit-card glass-card">
+        <h3 class="edit-title">Edit Profile</h3>
   
-        <button type="submit" [disabled]="saving">
-          {{ saving ? 'Saving...' : 'Save changes' }}
-        </button>
-      </form>
+        <div class="alert-error" *ngIf="error">{{ error }}</div>
+        <div class="alert-success" *ngIf="success">{{ success }}</div>
+  
+        <form (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>About me</mat-label>
+            <mat-icon matPrefix>info</mat-icon>
+            <textarea
+              matInput
+              [(ngModel)]="bio"
+              name="bio"
+              placeholder="Tell about yourself"
+              rows="5"
+            ></textarea>
+          </mat-form-field>
+  
+          <button
+            mat-raised-button
+            class="btn-gradient submit-btn"
+            type="submit"
+            [disabled]="saving"
+          >
+            <mat-spinner diameter="20" *ngIf="saving"></mat-spinner>
+            <span *ngIf="!saving">
+              <mat-icon>save</mat-icon> Save changes
+            </span>
+          </button>
+        </form>
+      </div>
     </div>
   </div>

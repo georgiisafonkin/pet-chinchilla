@@ -1,33 +1,45 @@
-<div class="container">
-    <h2>Login</h2>
+<div class="auth-page">
+    <div class="form-container">
+      <h1 class="form-title">Welcome back</h1>
+      <p class="form-subtitle">Sign in to your breeder account</p>
   
-    <div class="error" *ngIf="error">{{ error }}</div>
+      <div class="alert-error" *ngIf="error">{{ error }}</div>
   
-    <form (ngSubmit)="onSubmit()">
-      <div class="field">
-        <label>Username</label>
-        <input
-          type="text"
-          [(ngModel)]="username"
-          name="username"
-          placeholder="Enter username"
-        />
-      </div>
+      <form (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          <input matInput [(ngModel)]="username" name="username" placeholder="Enter username"/>
+        </mat-form-field>
   
-      <div class="field">
-        <label>Password</label>
-        <input
-          type="password"
-          [(ngModel)]="password"
-          name="password"
-          placeholder="Enter password"
-        />
-      </div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input
+            matInput
+            [(ngModel)]="password"
+            name="password"
+            [type]="hidePassword ? 'password' : 'text'"
+            placeholder="Enter password"
+          />
+          <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
   
-      <button type="submit" [disabled]="loading">
-        {{ loading ? 'Logging in...' : 'Login' }}
-      </button>
-    </form>
+        <button
+          mat-raised-button
+          class="btn-gradient submit-btn"
+          type="submit"
+          [disabled]="loading"
+        >
+          <mat-spinner diameter="20" *ngIf="loading"></mat-spinner>
+          <span *ngIf="!loading">Sign In</span>
+        </button>
+      </form>
   
-    <p>Don't have an account? <a routerLink="/register">Register</a></p>
+      <p class="form-footer">
+        Don't have an account? <a routerLink="/register">Create one</a>
+      </p>
+    </div>
   </div>

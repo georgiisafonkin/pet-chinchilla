@@ -1,48 +1,106 @@
-<div class="chat-container">
-    <div class="breeders-list">
-      <h3>Breeders</h3>
-      <div class="error" *ngIf="error">{{ error }}</div>
-      <div
-        class="breeder-item"
-        *ngFor="let breeder of breeders"
-        [class.active]="selectedBreeder?.id === breeder.id"
-        (click)="selectBreeder(breeder)"
-      >
-        {{ breeder.username }}
+<div class="chat-layout" >
+    <div class="chat-sidebar">
+      <div class="sidebar-header">
+        <h3>Breeders</h3>
+        <mat-icon>people</mat-icon>
       </div>
+  
+      <mat-divider></mat-divider>
+  
+      <div class="alert-error" *ngIf="error">{{ error }}</div>
+  
+      <div class="empty-breeders" *ngIf="breeders.length === 0">
+        <mat-icon>person_off</mat-icon>
+        <p>No other breeders yet</p>
+      </div>
+  
+      <mat-nav-list>
+        <mat-list-item
+          *ngFor="let breeder of breeders"
+          (click)="selectBreeder(breeder)"
+          [class.active-breeder]="selectedBreeder?.id === breeder.id"
+        >
+          <div class="breeder-item">
+            <div class="breeder-avatar">{{ breeder.username[0].toUpperCase() }}</div>
+            <div class="breeder-info">
+              <span class="breeder-name">{{ breeder.username }}</span>
+              <span class="breeder-bio" *ngIf="breeder.bio">{{ breeder.bio }}</span>
+            </div>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
     </div>
   
-    <div class="conversation">
-      <div *ngIf="!selectedBreeder" class="placeholder">
-        <p>Select a breeder to start chatting</p>
+    <div class="chat-main">
+      <div class="chat-placeholder" *ngIf="!selectedBreeder">
+        <mat-icon>chat_bubble_outline</mat-icon>
+        <h3>Select a breeder to start chatting</h3>
+        <p>Choose someone from the list on the left</p>
       </div>
   
       <ng-container *ngIf="selectedBreeder">
-        <div class="conversation-header">
-          <h3>{{ selectedBreeder.username }}</h3>
-        </div>
-  
-        <div class="message-list" #messageList>
-          <div class="loading" *ngIf="loading">Loading...</div>
-          <div
-            class="message"
-            *ngFor="let message of messages"
-            [class.own]="message.sender_username !== selectedBreeder.username"
-          >
-            <span class="sender">{{ message.sender_username }}</span>
-            <p>{{ message.text }}</p>
-            <span class="time">{{ message.created_at | date:'HH:mm' }}</span>
+        <div class="chat-header">
+          <div class="breeder-avatar large">
+            {{ selectedBreeder.username[0].toUpperCase() }}
+          </div>
+          <div>
+            <h3>{{ selectedBreeder.username }}</h3>
+            <span class="online-status">
+              <span class="online-dot"></span> Online
+            </span>
           </div>
         </div>
   
-        <div class="message-input">
-          <input
-            type="text"
-            [(ngModel)]="text"
-            placeholder="Type a message..."
-            (keyup.enter)="sendMessage()"
-          />
-          <button (click)="sendMessage()">Send</button>
+        <mat-divider></mat-divider>
+  
+        <div class="messages-area" #messageList>
+          <div class="loading-container" *ngIf="loading">
+            <mat-spinner diameter="36"></mat-spinner>
+          </div>
+  
+          <div class="empty-messages" *ngIf="!loading && messages.length === 0">
+            <mat-icon>chat</mat-icon>
+            <p>No messages yet. Say hello! 👋</p>
+          </div>
+  
+          <div
+            *ngFor="let message of messages"
+            class="message-wrapper"
+            [class.own-wrapper]="message.sender_username !== selectedBreeder.username"
+            @messageIn
+          >
+            <div
+              class="message-bubble"
+              [class.own]="message.sender_username !== selectedBreeder.username"
+              [class.other]="message.sender_username === selectedBreeder.username"
+            >
+              <p>{{ message.text }}</p>
+              <span class="message-time">
+                {{ message.created_at | date:'HH:mm' }}
+              </span>
+            </div>
+          </div>
+        </div>
+  
+        <div class="message-input-area">
+          <mat-form-field appearance="outline" class="input-field">
+            <input
+              matInput
+              [(ngModel)]="text"
+              placeholder="Type a message..."
+              (keyup.enter)="sendMessage()"
+              autocomplete="off"
+            />
+          </mat-form-field>
+          <button
+            mat-fab
+            class="btn-gradient send-btn"
+            (click)="sendMessage()"
+            [disabled]="!text.trim()"
+            matTooltip="Send"
+          >
+            <mat-icon>send</mat-icon>
+          </button>
         </div>
       </ng-container>
     </div>

@@ -67,7 +67,6 @@
             *ngFor="let message of messages"
             class="message-wrapper"
             [class.own-wrapper]="message.sender_username !== selectedBreeder.username"
-            @messageIn
           >
             <div
               class="message-bubble"

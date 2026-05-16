@@ -9,7 +9,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatBadgeModule } from '@angular/material/badge';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { ChatService, Message } from '../../../core/services/chat.service';
 import { BreederService, Breeder } from '../../../core/services/breeder.service';
@@ -82,6 +81,7 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewChecke
         this.messages = data;
         this.loading = false;
         this.shouldScroll = true;
+        this.cdr.detectChanges();
       },
       error: () => {
         this.error = 'Failed to load messages.';
@@ -93,6 +93,7 @@ export class ConversationComponent implements OnInit, OnDestroy, AfterViewChecke
     this.messageSub = this.chatService.message$.subscribe(message => {
       this.messages.push(message);
       this.shouldScroll = true;
+      this.cdr.detectChanges();
     });
   }
 

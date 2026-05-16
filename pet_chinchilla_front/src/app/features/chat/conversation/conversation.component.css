@@ -1,0 +1,241 @@
+.chat-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    height: calc(100vh - 64px);
+  }
+  
+  /* Sidebar */
+  .chat-sidebar {
+    background: rgba(255, 255, 255, 0.03);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+  }
+  
+  .breeder-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    width: 100%;
+  }
+  
+  .breeder-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  
+  .breeder-avatar.large {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+  
+  .breeder-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .breeder-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: black;
+  }
+  
+  .breeder-bio {
+    font-size: 0.75rem;
+    color: grey;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .active-breeder {
+    background: rgba(168, 85, 247, 0.15) !important;
+    border-left: 3px solid #a855f7;
+  }
+  
+  .empty-breeders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.3);
+    gap: 0.5rem;
+  }
+  
+  /* Main */
+  .chat-main {
+    display: flex;
+    flex-direction: column;
+    background: #0f0f13;
+    overflow: hidden;
+  }
+  
+  .chat-placeholder {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.3);
+    gap: 0.75rem;
+  }
+  
+  .chat-placeholder mat-icon {
+    font-size: 4rem;
+    width: 4rem;
+    height: 4rem;
+    color: rgba(168, 85, 247, 0.3);
+  }
+  
+  .chat-placeholder h3 {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .chat-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  .chat-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+  
+  .online-status {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .online-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  
+  /* Messages */
+  .messages-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .empty-messages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    color: rgba(255, 255, 255, 0.3);
+    gap: 0.5rem;
+  }
+  
+  .message-wrapper {
+    display: flex;
+  }
+  
+  .own-wrapper {
+    justify-content: flex-end;
+  }
+  
+  .message-bubble {
+    max-width: 60%;
+    padding: 0.75rem 1rem;
+    border-radius: 16px;
+    line-height: 1.5;
+  }
+  
+  .message-bubble p {
+    font-size: 0.9rem;
+    margin: 0;
+    word-break: break-word;
+  }
+  
+  .message-bubble.own {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+  
+  .message-bubble.other {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom-left-radius: 4px;
+  }
+  
+  .message-time {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    display: block;
+    margin-top: 0.25rem;
+    text-align: right;
+  }
+  
+  /* Input */
+  .message-input-area {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  
+  .input-field {
+    flex: 1;
+  }
+  
+  .input-field input {
+    color: white;
+  }
+
+  .send-btn {
+    flex-shrink: 0;
+  }
+  
+  mat-divider {
+    border-color: rgba(255, 255, 255, 0.08) !important;
+  }

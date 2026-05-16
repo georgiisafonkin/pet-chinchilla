@@ -1,0 +1,54 @@
+<div class="page-container">
+    <div class="page-header">
+      <h1 class="page-title">My Chinchillas</h1>
+      <a mat-raised-button class="btn-gradient" routerLink="/chinchillas/new">
+        <mat-icon>add</mat-icon> Add Chinchilla
+      </a>
+    </div>
+  
+    <div class="alert-error" *ngIf="error">{{ error }}</div>
+  
+    <div class="loading-container" *ngIf="loading">
+      <mat-spinner diameter="48"></mat-spinner>
+    </div>
+  
+    <div class="empty-state" *ngIf="!loading && chinchillas.length === 0">
+      <mat-icon>pets</mat-icon>
+      <h3>No chinchillas yet</h3>
+      <p>Add your first chinchilla to get started</p>
+      <a mat-raised-button class="btn-gradient" routerLink="/chinchillas/new">
+        <mat-icon>add</mat-icon> Add Chinchilla
+      </a>
+    </div>
+  
+    <div class="card-grid" *ngIf="!loading && chinchillas.length > 0">
+      <mat-card class="chinchilla-card" *ngFor="let c of chinchillas">
+        <mat-card-header>
+          <div class="chinchilla-avatar">🐭</div>
+          <mat-card-title>{{ c.name }}</mat-card-title>
+          <mat-card-subtitle *ngIf="c.breed">{{ c.breed }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="chips-row">
+            <mat-chip *ngIf="c.age">
+              <mat-icon>cake</mat-icon> {{ c.age }} months
+            </mat-chip>
+            <mat-chip *ngIf="c.fur_type">
+              <mat-icon>brush</mat-icon> {{ c.fur_type }}
+            </mat-chip>
+            <mat-chip *ngIf="c.color">
+              <mat-icon>palette</mat-icon> {{ c.color }}
+            </mat-chip>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button [routerLink]="['/chinchillas', c.id, 'edit']">
+            <mat-icon>edit</mat-icon> Edit
+          </a>
+          <button mat-button color="warn" (click)="delete(c.id)">
+            <mat-icon>delete</mat-icon> Delete
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>

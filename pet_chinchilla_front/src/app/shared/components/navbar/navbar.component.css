@@ -1,0 +1,42 @@
+mat-toolbar {
+    background: rgba(15, 15, 19, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+  
+  .active-link {
+    color: #a855f7 !important;
+  }
+  
+  a, button {
+    margin-left: 0.5rem;
+  }
+
+  mat-toolbar a, mat-toolbar button {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+  
+  mat-toolbar a:hover, mat-toolbar button:hover {
+    color: #ffffff !important;
+  }
+  
+  mat-toolbar .active-link {
+    color: #a855f7 !important;
+  }

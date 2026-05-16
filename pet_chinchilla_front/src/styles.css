@@ -1,0 +1,17 @@
+.page-container,
+.form-page,
+.auth-page,
+.chat-layout {
+  animation: fadeUp 0.3s ease-out;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

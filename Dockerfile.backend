@@ -1,0 +1,21 @@
+FROM python:3.14-slim
+
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+WORKDIR /app
+
+# Copy dependency files
+COPY pyproject.toml uv.lock ./
+
+# Install dependencies
+RUN uv sync --frozen --no-dev
+
+# Copy project source
+COPY pet_chinchilla_back/ ./pet_chinchilla_back/
+
+WORKDIR /app/pet_chinchilla_back
+
+EXPOSE 8000
+
+CMD ["uv", "run", "daphne", "-b", "0.0.0.0", "-p", "8000", "pet_chinchilla_back.asgi:application"]

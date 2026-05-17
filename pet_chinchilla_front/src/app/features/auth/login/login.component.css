@@ -7,7 +7,7 @@
     background: radial-gradient(ellipse at top, rgba(124, 58, 237, 0.15) 0%, transparent 60%),
                 radial-gradient(ellipse at bottom, rgba(236, 72, 153, 0.1) 0%, transparent 60%);
   }
-  
+
   .logo {
     font-size: 3rem;
     text-align: center;
@@ -16,7 +16,7 @@
   
   .form-subtitle {
     text-align: center;
-    color: rgba(255, 255, 255, 0.5);
+    color: grey;
     margin-bottom: 2rem;
     font-size: 0.9rem;
   }

@@ -8,8 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { ChinchillaService, ChinchillaPayload } from '../../../core/services/chinchilla.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-chinchilla-form',
@@ -24,6 +24,7 @@ import { ChinchillaService, ChinchillaPayload } from '../../../core/services/chi
     MatIconModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatTooltipModule,
   ],
   templateUrl: './chinchilla-form.component.html',
   styleUrl: './chinchilla-form.component.css',

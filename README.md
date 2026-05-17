@@ -69,7 +69,7 @@ pet-chinchilla/
 │   │   ├── urls.py
 │   │   └── asgi.py               # ASGI + Channels routing
 │   └── manage.py
-├── chinchilla-frontend/          # Angular frontend
+├── pet_chinchilla_front/          # Angular frontend
 │   └── src/app/
 │       ├── core/
 │       │   ├── services/         # HTTP + WebSocket services

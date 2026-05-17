@@ -146,7 +146,7 @@ Backend will be available at `http://localhost:8000`
 ### 4. Start the frontend
 
 ```bash
-cd chinchilla-frontend
+cd pet_chinchilla_front
 npm install
 ng serve
 ```
